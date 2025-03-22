@@ -135,16 +135,16 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="relative w-screen h-screen">
       {error && (
-        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-[1000]">
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-md">
             {error}
           </div>
         </div>
       )}
       
-      <div className="w-screen h-screen">
+      <div className="w-full h-full">
         <MapContainer
           center={position}
           zoom={15}
@@ -152,9 +152,17 @@ function App() {
           className="w-full h-full"
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+            url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw"
+            tileSize={512}
+            zoomOffset={-1}
+            errorTileUrl="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Crect width='100%25' height='100%25' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' fill='%23999' font-size='14px'%3E地图加载失败%3C/text%3E%3C/svg%3E"
           />
+          <div className="absolute bottom-4 left-4 z-[1000] bg-white px-2 py-1 rounded shadow text-sm">
+            {error ? (
+              <div className="text-red-500">地图服务暂时不可用，请稍后再试</div>
+            ) : null}
+          </div>
           <Marker position={position}>
             <Popup>
               <div className="text-center">

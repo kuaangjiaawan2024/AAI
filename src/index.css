@@ -2,7 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+#root {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 .leaflet-container {
   width: 100%;
   height: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 确保地图瓦片层正确显示 */
+.leaflet-tile-container img {
+  width: 256px;
+  height: 256px;
+}
+
+/* 修复地图控件层级 */
+.leaflet-control {
+  z-index: 1000;
 }
