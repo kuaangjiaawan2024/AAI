@@ -82,16 +82,6 @@ function LocationButton() {
       </button>
     </>
   );
-
-  return (
-    <button
-      onClick={handleLocate}
-      className="absolute bottom-6 right-6 z-[1000] bg-white p-3 rounded-full shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      disabled={locating}
-    >
-      <Navigation2 className={`h-6 w-6 text-blue-500 ${locating ? 'animate-spin' : ''}`} />
-    </button>
-  );
 }
 
 function App() {
